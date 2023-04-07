@@ -6,7 +6,7 @@
 /*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 14:13:14 by jhusso            #+#    #+#             */
-/*   Updated: 2023/04/07 09:19:08 by jhusso           ###   ########.fr       */
+/*   Updated: 2023/04/07 12:45:59 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	first_child(t_pipex *pipex, char **envp, char **av)
 		if (execve(pipex->cmd1_path, pipex->cmd1, envp) == -1)
 			error("Error in execve1()", 1);
 	}
-	exit(1);
+	exit(0);
 }
 
 void	second_child(t_pipex *pipex, char **envp, char **av)
@@ -54,8 +54,8 @@ void	second_child(t_pipex *pipex, char **envp, char **av)
 		error("Error 4", 1);
 	if (pipex->outfile != -1)
 	{
-		if (execve(pipex->cmd2_path, pipex->cmd2, envp) == -1)
+		if ((execve(pipex->cmd2_path, pipex->cmd2, envp) == -1))
 			error("Error in execve2()", 1);
 	}
-	exit(1);
+	exit(0);
 }
